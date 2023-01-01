@@ -1,6 +1,6 @@
-package com.geekbrains.tests.presenter.search
+package com.geekbrains.github.presenter.search
 
-import com.geekbrains.tests.presenter.PresenterContract
+import com.geekbrains.github.presenter.PresenterContract
 
 internal interface PresenterSearchContract : PresenterContract {
     fun searchGitHub(searchQuery: String)

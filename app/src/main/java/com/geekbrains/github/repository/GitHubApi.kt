@@ -1,6 +1,6 @@
-package com.geekbrains.tests.repository
+package com.geekbrains.github.repository
 
-import com.geekbrains.tests.model.SearchResponse
+import com.geekbrains.github.model.SearchResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers

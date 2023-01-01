@@ -1,12 +1,12 @@
-package com.geekbrains.tests.view.details
+package com.geekbrains.github.view.details
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.geekbrains.tests.R
-import com.geekbrains.tests.presenter.details.DetailsPresenter
-import com.geekbrains.tests.presenter.details.PresenterDetailsContract
+import com.geekbrains.github.R
+import com.geekbrains.github.presenter.details.DetailsPresenter
+import com.geekbrains.github.presenter.details.PresenterDetailsContract
 import kotlinx.android.synthetic.main.activity_details.*
 import java.util.*
 
@@ -18,6 +18,12 @@ class DetailsActivity : AppCompatActivity(), ViewDetailsContract {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
         setUI()
+        presenter.onAttach()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDetach()
     }
 
     private fun setUI() {

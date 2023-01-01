@@ -1,7 +1,7 @@
-package com.geekbrains.tests.view.search
+package com.geekbrains.github.view.search
 
-import com.geekbrains.tests.model.SearchResult
-import com.geekbrains.tests.view.ViewContract
+import com.geekbrains.github.model.SearchResult
+import com.geekbrains.github.view.ViewContract
 
 internal interface ViewSearchContract : ViewContract {
     fun displaySearchResults(

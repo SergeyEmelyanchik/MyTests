@@ -1,6 +1,6 @@
-package com.geekbrains.tests.presenter.details
+package com.geekbrains.github.presenter.details
 
-import com.geekbrains.tests.presenter.PresenterContract
+import com.geekbrains.github.presenter.PresenterContract
 
 internal interface PresenterDetailsContract : PresenterContract {
     fun setCounter(count: Int)

@@ -1,10 +1,11 @@
-package com.geekbrains.tests
+package com.geekbrains.github
 
-import com.geekbrains.tests.model.SearchResponse
-import com.geekbrains.tests.model.SearchResult
-import com.geekbrains.tests.presenter.search.SearchPresenter
-import com.geekbrains.tests.repository.GitHubRepository
-import com.geekbrains.tests.view.search.ViewSearchContract
+
+import com.geekbrains.github.model.SearchResponse
+import com.geekbrains.github.model.SearchResult
+import com.geekbrains.github.presenter.search.SearchPresenter
+import com.geekbrains.github.repository.GitHubRepository
+import com.geekbrains.github.view.search.ViewSearchContract
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
@@ -148,5 +149,11 @@ class SearchPresenterTest {
 
         //Убеждаемся, что ответ от сервера обрабатывается корректно
         verify(viewContract, times(1)).displaySearchResults(searchResults, 101)
+    }
+
+    @Test
+    fun onDetach() {
+        presenter.onDetach()
+        assertNull(presenter.viewContract)
     }
 }
