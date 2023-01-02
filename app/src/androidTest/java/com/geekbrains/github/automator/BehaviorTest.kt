@@ -62,13 +62,13 @@ class BehaviorTest {
     //Убеждаемся, что поиск работает как ожидается
     @Test
     fun test_SearchIsPositive() {
+        val btnSearch = uiDevice.findObject(By.res(packageName, "searchButton"))
         //Через uiDevice находим editText
         val editText = uiDevice.findObject(By.res(packageName, "searchEditText"))
         //Устанавливаем значение
         editText.text = "UiAutomator"
-        //Отправляем запрос через Espresso
-        Espresso.onView(ViewMatchers.withId(R.id.searchEditText))
-            .perform(ViewActions.pressImeActionButton())
+        //Отправляем запрос
+        btnSearch.click()
 
         //Ожидаем конкретного события: появления текстового поля totalCountTextView.
         //Это будет означать, что сервер вернул ответ с какими-то данными, то есть запрос отработал.
