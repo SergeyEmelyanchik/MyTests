@@ -1,4 +1,4 @@
-package com.geekbrains.github
+package com.geekbrains.github.espresso
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
