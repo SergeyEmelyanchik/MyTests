@@ -6,13 +6,17 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.geekbrains.github.BuildConfig
 import com.geekbrains.github.R
 import com.geekbrains.github.model.SearchResult
+import com.geekbrains.github.presenter.RepositoryContract
 import com.geekbrains.github.presenter.search.PresenterSearchContract
 import com.geekbrains.github.presenter.search.SearchPresenter
+import com.geekbrains.github.repository.FakeGitHubRepository
 import com.geekbrains.github.repository.GitHubApi
 import com.geekbrains.github.repository.GitHubRepository
 import com.geekbrains.github.view.details.DetailsActivity
+import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -27,12 +31,6 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setUI()
-        presenter.onAttach()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        presenter.onDetach()
     }
 
     private fun setUI() {
@@ -68,8 +66,12 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
         })
     }
 
-    private fun createRepository(): GitHubRepository {
-        return GitHubRepository(createRetrofit().create(GitHubApi::class.java))
+    private fun createRepository(): RepositoryContract {
+        return if (BuildConfig.TYPE == FAKE) {
+            FakeGitHubRepository()
+        } else {
+            GitHubRepository(createRetrofit().create(GitHubApi::class.java))
+        }
     }
 
     private fun createRetrofit(): Retrofit {
@@ -83,6 +85,16 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
         searchResults: List<SearchResult>,
         totalCount: Int
     ) {
+        with(totalCountTextView) {
+            visibility = android.view.View.VISIBLE
+            text =
+                kotlin.String.format(
+                    java.util.Locale.getDefault(),
+                    getString(R.string.results_count),
+                    totalCount
+                )
+        }
+
         this.totalCount = totalCount
         adapter.updateResults(searchResults)
     }
@@ -105,5 +117,6 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
 
     companion object {
         const val BASE_URL = "https://api.github.com"
+        const val FAKE = "FAKE"
     }
 }
