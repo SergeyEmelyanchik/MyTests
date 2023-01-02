@@ -6,17 +6,14 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.geekbrains.github.BuildConfig
 import com.geekbrains.github.R
 import com.geekbrains.github.model.SearchResult
 import com.geekbrains.github.presenter.RepositoryContract
 import com.geekbrains.github.presenter.search.PresenterSearchContract
 import com.geekbrains.github.presenter.search.SearchPresenter
-import com.geekbrains.github.repository.FakeGitHubRepository
 import com.geekbrains.github.repository.GitHubApi
 import com.geekbrains.github.repository.GitHubRepository
 import com.geekbrains.github.view.details.DetailsActivity
-import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -67,11 +64,7 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
     }
 
     private fun createRepository(): RepositoryContract {
-        return if (BuildConfig.TYPE == FAKE) {
-            FakeGitHubRepository()
-        } else {
-            GitHubRepository(createRetrofit().create(GitHubApi::class.java))
-        }
+        return GitHubRepository(createRetrofit().create(GitHubApi::class.java))
     }
 
     private fun createRetrofit(): Retrofit {
