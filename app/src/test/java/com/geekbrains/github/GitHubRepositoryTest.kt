@@ -2,7 +2,6 @@ package com.geekbrains.github
 
 import com.geekbrains.github.model.SearchResponse
 import com.geekbrains.github.repository.GitHubApi
-import com.geekbrains.github.repository.GitHubRepository
 import com.geekbrains.github.repository.GitHubRepository.GitHubRepositoryCallback
 import okhttp3.Request
 import okio.Timeout

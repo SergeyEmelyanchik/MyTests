@@ -10,10 +10,13 @@ import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.Until
+import com.geekbrains.tests.TEST_NUMBER_OF_RESULTS_MINUS_1
+import com.geekbrains.tests.TEST_NUMBER_OF_RESULTS_PLUS_1
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+
 
 @RunWith(AndroidJUnit4::class)
 @SdkSuppress(minSdkVersion = 18)
@@ -22,7 +25,7 @@ class DetailsScreenTest {
         UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
     private val context = ApplicationProvider.getApplicationContext<Context>()
     private val packageName = context.packageName
-    private lateinit  var changedTextDetails :  UiObject2
+    private lateinit var changedTextDetails: UiObject2
 
     @Before
     fun setup() {
@@ -63,22 +66,22 @@ class DetailsScreenTest {
         // Кнопка increment
         val btnIncrement = getObjectId("incrementButton")
         btnIncrement.click()
-        Assert.assertEquals(changedTextDetails.text.toString(), "Number of results: 1")
+        Assert.assertEquals(changedTextDetails.text.toString(), TEST_NUMBER_OF_RESULTS_PLUS_1)
 
     }
 
     @Test
     fun activityButtonDecrement() {
         // Кнопка decrement
-        val btnDecrement =  getObjectId("decrementButton")
+        val btnDecrement = getObjectId("decrementButton")
         btnDecrement.click()
-        Assert.assertEquals(changedTextDetails.text.toString(), "Number of results: -1")
+        Assert.assertEquals(changedTextDetails.text.toString(), TEST_NUMBER_OF_RESULTS_MINUS_1)
 
     }
 
 
-    fun getObjectId(btnId : String) : UiObject2 {
-        return    uiDevice.findObject(By.res(packageName, btnId))
+    fun getObjectId(btnId: String): UiObject2 {
+        return uiDevice.findObject(By.res(packageName, btnId))
     }
 
 

@@ -4,8 +4,8 @@ package com.geekbrains.github
 import com.geekbrains.github.model.SearchResponse
 import com.geekbrains.github.model.SearchResult
 import com.geekbrains.github.presenter.search.SearchPresenter
-import com.geekbrains.github.repository.GitHubRepository
 import com.geekbrains.github.view.search.ViewSearchContract
+import com.geekbrains.tests.DISPLAY_ERROR
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
@@ -76,7 +76,7 @@ class SearchPresenterTest {
 
         //Убеждаемся, что вызывается верный метод: viewContract.displayError("Response is null or unsuccessful"), и что он вызывается единожды
         verify(viewContract, times(1))
-            .displayError("Response is null or unsuccessful")
+            .displayError(DISPLAY_ERROR)
     }
 
     @Test //Проверим порядок вызова методов viewContract
@@ -89,7 +89,7 @@ class SearchPresenterTest {
         val inOrder = inOrder(viewContract)
         //Прописываем порядок вызова методов
         inOrder.verify(viewContract).displayLoading(false)
-        inOrder.verify(viewContract).displayError("Response is null or unsuccessful")
+        inOrder.verify(viewContract).displayError(DISPLAY_ERROR)
     }
 
     @Test //Проверим пустой ответ сервера

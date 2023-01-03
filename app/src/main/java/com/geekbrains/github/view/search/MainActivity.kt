@@ -6,13 +6,13 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.geekbrains.github.GitHubRepository
 import com.geekbrains.github.R
 import com.geekbrains.github.model.SearchResult
 import com.geekbrains.github.presenter.RepositoryContract
 import com.geekbrains.github.presenter.search.PresenterSearchContract
 import com.geekbrains.github.presenter.search.SearchPresenter
 import com.geekbrains.github.repository.GitHubApi
-import com.geekbrains.github.repository.GitHubRepository
 import com.geekbrains.github.view.details.DetailsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Retrofit
